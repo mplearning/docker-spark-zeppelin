@@ -1,0 +1,1548 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# Machine Learning with Spark\n**Note**: this lab is left for reference purposes only and will be eventually removed as it does not qualify as a beginner Machine Learning lab based on feedback from the community.\n\nAuthor: Robert Hryniewicz\nTwitter: @RobHryniewicz\n\nLast updated: Aug 1st, 2016 (ver 0.1)",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479638_483432730",
+      "id": "20160531-234527_1318957937",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eMachine Learning with Spark\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eNote\u003c/strong\u003e: this lab is left for reference purposes only and will be eventually removed as it does not qualify as a beginner Machine Learning lab based on feedback from the community.\u003c/p\u003e\n\u003cp\u003eAuthor: Robert Hryniewicz\n\u003cbr  /\u003eTwitter: @RobHryniewicz\u003c/p\u003e\n\u003cp\u003eLast updated: Aug 1st, 2016 (ver 0.1)\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Introduction",
+      "text": "%md\n\nIn this lab you will run a few examples covering both *unsupervised* learning, such as K-Means clustering, as well as *supervised* learning, such as Decision Trees and Random Forests. The purpose of this lab is to get you started exploring machine learning algorithms without going into mathematical details of what goes on behind the scenes.\n#\nWe will cover several examples that are part of Apache Spark package using both the original Spark MLlib API as well as the newer Spark ML API.\n#\nOnce you\u0027re done, you should have a better feel for the powerful Machine Learning libraries that are part of Apache Spark.\n#\nFor a complete documentation checkout the official Apache Spark [Machine Learning Library (MLlib) Guide](http://spark.apache.org/docs/latest/mllib-guide.html).\n#",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479641_480739488",
+      "id": "20160531-234527_2012845753",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eIn this lab you will run a few examples covering both \u003cem\u003eunsupervised\u003c/em\u003e learning, such as K-Means clustering, as well as \u003cem\u003esupervised\u003c/em\u003e learning, such as Decision Trees and Random Forests. The purpose of this lab is to get you started exploring machine learning algorithms without going into mathematical details of what goes on behind the scenes.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eWe will cover several examples that are part of Apache Spark package using both the original Spark MLlib API as well as the newer Spark ML API.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eOnce you\u0027re done, you should have a better feel for the powerful Machine Learning libraries that are part of Apache Spark.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eFor a complete documentation checkout the official Apache Spark \u003ca href\u003d\"http://spark.apache.org/docs/latest/mllib-guide.html\"\u003eMachine Learning Library (MLlib) Guide\u003c/a\u003e.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Programming Language: Scala",
+      "text": "%md\n\nThroughout this lab we will use basic Scala syntax. If you would like to learn more about Scala, here\u0027s an excellent [Scala Tutorial](http://www.dhgarrette.com/nlpclass/scala/basics.html).",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479642_481893735",
+      "id": "20160531-234527_588679480",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eThroughout this lab we will use basic Scala syntax. If you would like to learn more about Scala, here\u0027s an excellent \u003ca href\u003d\"http://www.dhgarrette.com/nlpclass/scala/basics.html\"\u003eScala Tutorial\u003c/a\u003e.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Lab Pre-Check",
+      "text": "%md\n\nBefore we proceed, let\u0027s verify your Spark Version. You should be running at minimum Spark 1.6.\n#\n**Note**: The first time you run `sc.version` in the paragraph below, several services will initialize in the background. This may take **1~2 min** so please **be patient**. Afterwards, each paragraph should run much more quickly since all the services will already be running in the background.",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479643_481508986",
+      "id": "20160531-234527_478858631",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eBefore we proceed, let\u0027s verify your Spark Version. You should be running at minimum Spark 1.6.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eNote\u003c/strong\u003e: The first time you run \u003ccode\u003esc.version\u003c/code\u003e in the paragraph below, several services will initialize in the background. This may take \u003cstrong\u003e1~2 min\u003c/strong\u003e so please \u003cstrong\u003ebe patient\u003c/strong\u003e. Afterwards, each paragraph should run much more quickly since all the services will already be running in the background.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nTo run a paragraph in a Zeppelin notebook you can either click the `play` button (blue triangle) on the right-hand side or simply press `Shift + Enter`.",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479643_481508986",
+      "id": "20160531-234527_1555785908",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eTo run a paragraph in a Zeppelin notebook you can either click the \u003ccode\u003eplay\u003c/code\u003e button (blue triangle) on the right-hand side or simply press \u003ccode\u003eShift + Enter\u003c/code\u003e.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Unsupervised Learning: K-Means Clustering",
+      "text": "%md\n\n#### Unsupervised Learning\n\n\"Unsupervised learning is the machine learning task of inferring a function to describe hidden structure from unlabeled data. Since the examples given to the learner are unlabeled, there is no error or reward signal to evaluate a potential solution. This distinguishes unsupervised learning from supervised learning and reinforcement learning.\" - [wikipedia](https://en.wikipedia.org/wiki/Unsupervised_learning)\n#\n#### K-Means Clustering\n\nK-Means is one of the most commonly used clustering algorithms that clusters the data points into a predefined number of clusters. (See [Spark docs](http://spark.apache.org/docs/latest/ml-clustering.html) for more info.)\n#\nWe will use Spark ML API to generate a K-Means model using the Spark ML KMeans class. \n#\nKMeans is implemented as an Estimator and generates a KMeansModel as the base model.\n#\nNote that the data points for the training are hardcoded in the example below. Before you run the K-Means sample code, try to guess what the two cluster centers should be based on the training data.\n#",
+      "dateUpdated": "Sep 16, 2016 6:26:31 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479643_481508986",
+      "id": "20160531-234527_332869884",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch4\u003eUnsupervised Learning\u003c/h4\u003e\n\u003cp\u003e\u0026ldquo;Unsupervised learning is the machine learning task of inferring a function to describe hidden structure from unlabeled data. Since the examples given to the learner are unlabeled, there is no error or reward signal to evaluate a potential solution. This distinguishes unsupervised learning from supervised learning and reinforcement learning.\u0026rdquo; - \u003ca href\u003d\"https://en.wikipedia.org/wiki/Unsupervised_learning\"\u003ewikipedia\u003c/a\u003e\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003ch4\u003eK-Means Clustering\u003c/h4\u003e\n\u003cp\u003eK-Means is one of the most commonly used clustering algorithms that clusters the data points into a predefined number of clusters. (See \u003ca href\u003d\"http://spark.apache.org/docs/latest/ml-clustering.html\"\u003eSpark docs\u003c/a\u003e for more info.)\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eWe will use Spark ML API to generate a K-Means model using the Spark ML KMeans class.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eKMeans is implemented as an Estimator and generates a KMeansModel as the base model.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eNote that the data points for the training are hardcoded in the example below. Before you run the K-Means sample code, try to guess what the two cluster centers should be based on the training data.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nsc",
+      "dateUpdated": "Sep 16, 2016 9:00:35 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005583917_-451770897",
+      "id": "20160916-055943_1942890840",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\nres1: org.apache.spark.SparkContext \u003d org.apache.spark.SparkContext@579b2041\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:59:43 AM",
+      "dateStarted": "Sep 16, 2016 9:00:35 AM",
+      "dateFinished": "Sep 16, 2016 9:00:36 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n sc.range(5).collect()",
+      "dateUpdated": "Sep 16, 2016 9:00:40 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474007556840_1275418345",
+      "id": "20160916-063236_966783758",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "[0, 1, 2, 3, 4]\n"
+      },
+      "dateCreated": "Sep 16, 2016 6:32:36 AM",
+      "dateStarted": "Sep 16, 2016 9:00:40 AM",
+      "dateFinished": "Sep 16, 2016 9:00:45 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark ",
+      "dateUpdated": "Sep 16, 2016 8:00:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474012530280_-1088200370",
+      "id": "20160916-075530_1370941300",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Sep 16, 2016 7:55:30 AM",
+      "dateStarted": "Sep 16, 2016 8:00:52 AM",
+      "dateFinished": "Sep 16, 2016 8:00:52 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark \nrdd \u003d sc.parallelize([1, 3000])\nsorted(rdd.cartesian(rdd).collect())",
+      "dateUpdated": "Sep 16, 2016 8:00:57 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474010181936_-442362376",
+      "id": "20160916-071621_1566039462",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "[(1, 1), (1, 2000), (2000, 1), (2000, 2000)]\n"
+      },
+      "dateCreated": "Sep 16, 2016 7:16:21 AM",
+      "dateStarted": "Sep 16, 2016 7:59:38 AM",
+      "dateFinished": "Sep 16, 2016 7:59:40 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark \nsc.parallelize([2, 3, 4]).first()",
+      "dateUpdated": "Sep 16, 2016 7:29:54 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474010978893_-184459141",
+      "id": "20160916-072938_105347736",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "2\n"
+      },
+      "dateCreated": "Sep 16, 2016 7:29:38 AM",
+      "dateStarted": "Sep 16, 2016 7:29:55 AM",
+      "dateFinished": "Sep 16, 2016 7:29:55 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark \n case class Book(book: Int, reader: Int, name:String)\n\n  val recs \u003d Array(\n    Book(book \u003d 1, reader \u003d 30, name \u003d \"book1\"),\n    Book(book \u003d 2, reader \u003d 10, name \u003d \"book2\"),\n    Book(book \u003d 3, reader \u003d 20, name \u003d \"book3\"),\n    Book(book \u003d 1, reader \u003d 20, name \u003d \"book1\"),\n    Book(book \u003d 1, reader \u003d 10, name \u003d \"book1\"),\n    Book(book \u003d 1, reader \u003d 40, name \u003d \"book1\"),\n    Book(book \u003d 2, reader \u003d 40, name \u003d \"book2\"),\n    Book(book \u003d 1, reader \u003d 100, name \u003d \"book1\"),\n    Book(book \u003d 2, reader \u003d 100, name \u003d \"book2\"),\n    Book(book \u003d 3, reader \u003d 100, name \u003d \"book3\"),\n    Book(book \u003d 4, reader \u003d 100, name \u003d \"book4\"),\n    Book(book \u003d 5, reader \u003d 100, name \u003d \"book5\"),\n    Book(book \u003d 4, reader \u003d 500, name \u003d \"book4\"),\n    Book(book \u003d 1, reader \u003d 510, name \u003d \"book1\"),\n    Book(book \u003d 2, reader \u003d 30, name \u003d \"book2\"))\n    val data \u003d sc.parallelize(recs)\n    val maxBookCnt \u003d 4\n    val readersWithLotsOfBooksRDD \u003d data.map(r \u003d\u003e (r.reader, 1)).reduceByKey((x, y) \u003d\u003e x + y).filter{ case (_, x) \u003d\u003e x \u003e maxBookCnt }\n    readersWithLotsOfBooksRDD.collect()\n\n",
+      "dateUpdated": "Sep 16, 2016 9:10:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474016953355_274758823",
+      "id": "20160916-090913_1223194420",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\ndefined class Book\n\nrecs: Array[Book] \u003d Array(Book(1,30,book1), Book(2,10,book2), Book(3,20,book3), Book(1,20,book1), Book(1,10,book1), Book(1,40,book1), Book(2,40,book2), Book(1,100,book1), Book(2,100,book2), Book(3,100,book3), Book(4,100,book4), Book(5,100,book5), Book(4,500,book4), Book(1,510,book1), Book(2,30,book2))\n\ndata: org.apache.spark.rdd.RDD[Book] \u003d ParallelCollectionRDD[11] at parallelize at \u003cconsole\u003e:34\n\nmaxBookCnt: Int \u003d 4\n\nreadersWithLotsOfBooksRDD: org.apache.spark.rdd.RDD[(Int, Int)] \u003d MapPartitionsRDD[14] at filter at \u003cconsole\u003e:38\n\nres2: Array[(Int, Int)] \u003d Array((100,5))\n"
+      },
+      "dateCreated": "Sep 16, 2016 9:09:13 AM",
+      "dateStarted": "Sep 16, 2016 9:10:14 AM",
+      "dateFinished": "Sep 16, 2016 9:10:27 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ndata.saveAsTextFile(\"/usr/zeppelin/data/books2\")",
+      "dateUpdated": "Sep 16, 2016 9:30:35 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474017966872_1230897066",
+      "id": "20160916-092606_2042654878",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Sep 16, 2016 9:26:06 AM",
+      "dateStarted": "Sep 16, 2016 9:30:36 AM",
+      "dateFinished": "Sep 16, 2016 9:30:39 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark \n  val readersWithBooksRDD \u003d data.map( r \u003d\u003e (r.reader, (r.book, r.name) ))\n    readersWithBooksRDD.collect()\n    println(\"*** Records left after removing readers with maxBookCnt \u003e \"+maxBookCnt)\n    val data2 \u003d readersWithBooksRDD.subtractByKey(readersWithLotsOfBooksRDD)\n    data2.foreach(println)",
+      "dateUpdated": "Sep 16, 2016 9:11:24 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474017074942_-937030002",
+      "id": "20160916-091114_8055247",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\nreadersWithBooksRDD: org.apache.spark.rdd.RDD[(Int, (Int, String))] \u003d MapPartitionsRDD[15] at map at \u003cconsole\u003e:36\n\nres3: Array[(Int, (Int, String))] \u003d Array((30,(1,book1)), (10,(2,book2)), (20,(3,book3)), (20,(1,book1)), (10,(1,book1)), (40,(1,book1)), (40,(2,book2)), (100,(1,book1)), (100,(2,book2)), (100,(3,book3)), (100,(4,book4)), (100,(5,book5)), (500,(4,book4)), (510,(1,book1)), (30,(2,book2)))\n*** Records left after removing readers with maxBookCnt \u003e 4\n\ndata2: org.apache.spark.rdd.RDD[(Int, (Int, String))] \u003d SubtractedRDD[16] at subtractByKey at \u003cconsole\u003e:42\n"
+      },
+      "dateCreated": "Sep 16, 2016 9:11:14 AM",
+      "dateStarted": "Sep 16, 2016 9:11:25 AM",
+      "dateFinished": "Sep 16, 2016 9:11:33 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark \n // *** Prepair train  data\n    val trainData \u003d data2.map(tuple \u003d\u003e tuple match {\n      case (reader,v) \u003d\u003e Book(reader \u003d reader, book \u003d v._1, name \u003d v._2)\n    })\n\n    val sqlContext \u003d new org.apache.spark.sql.SQLContext(sc)\n    import sqlContext.implicits._\n    val trainDf \u003d trainData.toDF()\n    println(\"*** Creating pairs...\")\n    val trainPairs \u003d trainDf.join(\n      trainDf.select($\"book\" as \"r_book\", $\"reader\" as \"r_reader\", $\"name\" as \"r_name\"),\n      $\"reader\" \u003d\u003d\u003d $\"r_reader\" and $\"book\" \u003c $\"r_book\")\n      .groupBy($\"book\", $\"r_book\", $\"name\", $\"r_name\")\n      .agg($\"book\",$\"r_book\", count($\"reader\") as \"cnt\", $\"name\", $\"r_name\")\n\n    trainPairs.registerTempTable(\"trainPairs\")\n    println(\"*** Pairs Schema:\")\n    trainPairs.printSchema()",
+      "dateUpdated": "Sep 16, 2016 9:12:57 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474017144114_-1505045261",
+      "id": "20160916-091224_52232435",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\ntrainData: org.apache.spark.rdd.RDD[Book] \u003d MapPartitionsRDD[17] at map at \u003cconsole\u003e:45\n\nwarning: there was one deprecation warning; re-run with -deprecation for details\n\nsqlContext: org.apache.spark.sql.SQLContext \u003d org.apache.spark.sql.SQLContext@6cc0931a\n\nimport sqlContext.implicits._\n\ntrainDf: org.apache.spark.sql.DataFrame \u003d [book: int, reader: int ... 1 more field]\n*** Creating pairs...\n\ntrainPairs: org.apache.spark.sql.DataFrame \u003d [book: int, r_book: int ... 7 more fields]\n\nwarning: there was one deprecation warning; re-run with -deprecation for details\n*** Pairs Schema:\nroot\n |-- book: integer (nullable \u003d false)\n |-- r_book: integer (nullable \u003d false)\n |-- name: string (nullable \u003d true)\n |-- r_name: string (nullable \u003d true)\n |-- book: integer (nullable \u003d false)\n |-- r_book: integer (nullable \u003d false)\n |-- cnt: long (nullable \u003d false)\n |-- name: string (nullable \u003d true)\n |-- r_name: string (nullable \u003d true)\n\n"
+      },
+      "dateCreated": "Sep 16, 2016 9:12:24 AM",
+      "dateStarted": "Sep 16, 2016 9:12:58 AM",
+      "dateFinished": "Sep 16, 2016 9:13:09 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark \n// Order pairs by count\n    val pairsSorted \u003d sqlContext.sql(\"SELECT * FROM trainPairs ORDER BY cnt DESC\")\n    println(\"*** Pairs Sorted by Count\")\n    pairsSorted.show\n",
+      "dateUpdated": "Sep 16, 2016 9:21:05 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474017210130_2050342704",
+      "id": "20160916-091330_1333850791",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\npairsSorted: org.apache.spark.sql.DataFrame \u003d [book: int, r_book: int ... 7 more fields]\n*** Pairs Sorted by Count\n+----+------+-----+------+----+------+---+-----+------+\n|book|r_book| name|r_name|book|r_book|cnt| name|r_name|\n+----+------+-----+------+----+------+---+-----+------+\n|   1|     2|book1| book2|   1|     2|  3|book1| book2|\n|   1|     3|book1| book3|   1|     3|  1|book1| book3|\n+----+------+-----+------+----+------+---+-----+------+\n\n"
+      },
+      "dateCreated": "Sep 16, 2016 9:13:30 AM",
+      "dateStarted": "Sep 16, 2016 9:21:06 AM",
+      "dateFinished": "Sep 16, 2016 9:21:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark \npairsSorted.printSchema()",
+      "dateUpdated": "Sep 16, 2016 9:21:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474017684441_1155090021",
+      "id": "20160916-092124_499780610",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "root\n |-- book: integer (nullable \u003d false)\n |-- r_book: integer (nullable \u003d false)\n |-- name: string (nullable \u003d true)\n |-- r_name: string (nullable \u003d true)\n |-- book: integer (nullable \u003d false)\n |-- r_book: integer (nullable \u003d false)\n |-- cnt: long (nullable \u003d false)\n |-- name: string (nullable \u003d true)\n |-- r_name: string (nullable \u003d true)\n\n"
+      },
+      "dateCreated": "Sep 16, 2016 9:21:24 AM",
+      "dateStarted": "Sep 16, 2016 9:21:46 AM",
+      "dateFinished": "Sep 16, 2016 9:21:47 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark \nimport org.apache.spark.sql.Row\n// Key pairs by book\n    val keyedPairs \u003d trainPairs.rdd.map({case Row(book0: Int, rbook0: Int, name0: String, rname0:String, book1: Int, book2: Int, count: Int, name1: String, name2:String)\n    \u003d\u003e (book1,(book2, count, name1, name2))})\n    println(\"*** keyedPairs:\")\n    keyedPairs.foreach(println)",
+      "dateUpdated": "Sep 16, 2016 9:24:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474017304853_463408377",
+      "id": "20160916-091504_1119366471",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "\nimport org.apache.spark.sql.Row\n\nkeyedPairs: org.apache.spark.rdd.RDD[(Int, (Int, Int, String, String))] \u003d MapPartitionsRDD[66] at map at \u003cconsole\u003e:59\n*** keyedPairs:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 175 in stage 31.0 failed 4 times, most recent failure: Lost task 175.3 in stage 31.0 (TID 1055, 172.17.0.3): scala.MatchError: [1,3,book1,book3,1,3,1,book1,book3] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n\tat $anonfun$1.apply(\u003cconsole\u003e:59)\n\tat $anonfun$1.apply(\u003cconsole\u003e:59)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat scala.collection.Iterator$class.foreach(Iterator.scala:893)\n\tat scala.collection.AbstractIterator.foreach(Iterator.scala:1336)\n\tat org.apache.spark.rdd.RDD$$anonfun$foreach$1$$anonfun$apply$27.apply(RDD.scala:875)\n\tat org.apache.spark.rdd.RDD$$anonfun$foreach$1$$anonfun$apply$27.apply(RDD.scala:875)\n\tat org.apache.spark.SparkContext$$anonfun$runJob$5.apply(SparkContext.scala:1897)\n\tat org.apache.spark.SparkContext$$anonfun$runJob$5.apply(SparkContext.scala:1897)\n\tat org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:70)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:85)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:274)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1450)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1438)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1437)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1437)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:811)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:811)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:811)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1659)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1618)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1607)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:632)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1871)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1884)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1897)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1911)\n  at org.apache.spark.rdd.RDD$$anonfun$foreach$1.apply(RDD.scala:875)\n  at org.apache.spark.rdd.RDD$$anonfun$foreach$1.apply(RDD.scala:873)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:358)\n  at org.apache.spark.rdd.RDD.foreach(RDD.scala:873)\n  ... 48 elided\nCaused by: scala.MatchError: [1,3,book1,book3,1,3,1,book1,book3] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n  at $anonfun$1.apply(\u003cconsole\u003e:59)\n  at $anonfun$1.apply(\u003cconsole\u003e:59)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at scala.collection.Iterator$class.foreach(Iterator.scala:893)\n  at scala.collection.AbstractIterator.foreach(Iterator.scala:1336)\n  at org.apache.spark.rdd.RDD$$anonfun$foreach$1$$anonfun$apply$27.apply(RDD.scala:875)\n  at org.apache.spark.rdd.RDD$$anonfun$foreach$1$$anonfun$apply$27.apply(RDD.scala:875)\n  at org.apache.spark.SparkContext$$anonfun$runJob$5.apply(SparkContext.scala:1897)\n  at org.apache.spark.SparkContext$$anonfun$runJob$5.apply(SparkContext.scala:1897)\n  at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:70)\n  at org.apache.spark.scheduler.Task.run(Task.scala:85)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:274)\n  ... 3 more\n"
+      },
+      "dateCreated": "Sep 16, 2016 9:15:04 AM",
+      "dateStarted": "Sep 16, 2016 9:24:51 AM",
+      "dateFinished": "Sep 16, 2016 9:24:58 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark ",
+      "dateUpdated": "Sep 16, 2016 7:20:19 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474010401185_721223922",
+      "id": "20160916-072001_1074927846",
+      "dateCreated": "Sep 16, 2016 7:20:01 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.ml.clustering.KMeans\nimport org.apache.spark.mllib.linalg.Vectors\n\nimport org.apache.spark.sql.{DataFrame, SQLContext} \n\nval sqlContext \u003d new SQLContext(sc)\n\n// Crates a DataFrame\nval dataset: DataFrame \u003d sqlContext.createDataFrame(Seq(\n  (1, Vectors.dense(0.0, 0.0, 0.0)),\n  (2, Vectors.dense(0.1, 0.1, 0.1)),\n  (3, Vectors.dense(0.2, 0.2, 0.2)),\n  (4, Vectors.dense(3.0, 3.0, 3.0)),\n  (5, Vectors.dense(3.1, 3.1, 3.1)),\n  (6, Vectors.dense(3.2, 3.2, 3.2))\n)).toDF(\"id\", \"features\")\n\n// Trains a k-means model\nval kmeans \u003d new KMeans()\n  .setK(2)                              // set number of clusters\n  .setFeaturesCol(\"features\")\n  .setPredictionCol(\"prediction\")\nval model \u003d kmeans.fit(dataset)\n\n// Shows the result\nprintln(\"Final Centers: \")\nmodel.clusterCenters.foreach(println)",
+      "dateUpdated": "Sep 16, 2016 9:02:26 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479647_479969990",
+      "id": "20160531-234527_349239953",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "\nimport org.apache.spark.ml.clustering.KMeans\n\nimport org.apache.spark.mllib.linalg.Vectors\n\nimport org.apache.spark.sql.{DataFrame, SQLContext}\n\nwarning: there was one deprecation warning; re-run with -deprecation for details\n\nsqlContext: org.apache.spark.sql.SQLContext \u003d org.apache.spark.sql.SQLContext@1fab8791\n\ndataset: org.apache.spark.sql.DataFrame \u003d [id: int, features: vector]\n\nkmeans: org.apache.spark.ml.clustering.KMeans \u003d kmeans_8659b5d5a942\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1.0 failed 4 times, most recent failure: Lost task 0.3 in stage 1.0 (TID 8, 172.17.0.3): scala.MatchError: [[0.0,0.0,0.0]] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n\tat org.apache.spark.ml.clustering.KMeans$$anonfun$9.apply(KMeans.scala:307)\n\tat org.apache.spark.ml.clustering.KMeans$$anonfun$9.apply(KMeans.scala:307)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat org.apache.spark.storage.memory.MemoryStore.putIteratorAsValues(MemoryStore.scala:214)\n\tat org.apache.spark.storage.BlockManager$$anonfun$doPutIterator$1.apply(BlockManager.scala:919)\n\tat org.apache.spark.storage.BlockManager$$anonfun$doPutIterator$1.apply(BlockManager.scala:910)\n\tat org.apache.spark.storage.BlockManager.doPut(BlockManager.scala:866)\n\tat org.apache.spark.storage.BlockManager.doPutIterator(BlockManager.scala:910)\n\tat org.apache.spark.storage.BlockManager.getOrElseUpdate(BlockManager.scala:668)\n\tat org.apache.spark.rdd.RDD.getOrCompute(RDD.scala:330)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:281)\n\tat org.apache.spark.rdd.ZippedPartitionsRDD2.compute(ZippedPartitionsRDD.scala:89)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:319)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:283)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:319)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:283)\n\tat org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:70)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:85)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:274)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1450)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1438)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1437)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1437)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:811)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:811)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:811)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1659)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1618)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1607)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:632)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1871)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1884)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1897)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1911)\n  at org.apache.spark.rdd.RDD.count(RDD.scala:1115)\n  at org.apache.spark.rdd.RDD$$anonfun$takeSample$1.apply(RDD.scala:545)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:358)\n  at org.apache.spark.rdd.RDD.takeSample(RDD.scala:534)\n  at org.apache.spark.mllib.clustering.KMeans.initKMeansParallel(KMeans.scala:386)\n  at org.apache.spark.mllib.clustering.KMeans.runAlgorithm(KMeans.scala:256)\n  at org.apache.spark.mllib.clustering.KMeans.run(KMeans.scala:219)\n  at org.apache.spark.ml.clustering.KMeans.fit(KMeans.scala:321)\n  ... 46 elided\nCaused by: scala.MatchError: [[0.0,0.0,0.0]] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n  at org.apache.spark.ml.clustering.KMeans$$anonfun$9.apply(KMeans.scala:307)\n  at org.apache.spark.ml.clustering.KMeans$$anonfun$9.apply(KMeans.scala:307)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at org.apache.spark.storage.memory.MemoryStore.putIteratorAsValues(MemoryStore.scala:214)\n  at org.apache.spark.storage.BlockManager$$anonfun$doPutIterator$1.apply(BlockManager.scala:919)\n  at org.apache.spark.storage.BlockManager$$anonfun$doPutIterator$1.apply(BlockManager.scala:910)\n  at org.apache.spark.storage.BlockManager.doPut(BlockManager.scala:866)\n  at org.apache.spark.storage.BlockManager.doPutIterator(BlockManager.scala:910)\n  at org.apache.spark.storage.BlockManager.getOrElseUpdate(BlockManager.scala:668)\n  at org.apache.spark.rdd.RDD.getOrCompute(RDD.scala:330)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:281)\n  at org.apache.spark.rdd.ZippedPartitionsRDD2.compute(ZippedPartitionsRDD.scala:89)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:319)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:283)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:319)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:283)\n  at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:70)\n  at org.apache.spark.scheduler.Task.run(Task.scala:85)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:274)\n  ... 3 more\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "dateStarted": "Sep 16, 2016 9:02:27 AM",
+      "dateFinished": "Sep 16, 2016 9:02:46 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nDid you guess the cluster centers correctly?\n#\nAlthough this is a very simple exmaple, it should provide you with an intuitive feel for K-Means clustering.\n#\nBelow we\u0027ve provided you with a visualization of training data points and computed cluster centers.\n#",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479647_479969990",
+      "id": "20160531-234527_603082820",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eDid you guess the cluster centers correctly?\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eAlthough this is a very simple exmaple, it should provide you with an intuitive feel for K-Means clustering.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eBelow we\u0027ve provided you with a visualization of training data points and computed cluster centers.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Visualized Result of K-Means Clustering",
+      "text": "%md\n\nThe input data is marked with a blue **+** and the two K-Means cluser centers are marked with a red **x**.\n#\n![scatter-plot](https://raw.githubusercontent.com/roberthryniewicz/images/master/lab201-plt-3d-scatter.png)",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479648_465734281",
+      "id": "20160531-234527_2037625547",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eThe input data is marked with a blue \u003cstrong\u003e+\u003c/strong\u003e and the two K-Means cluser centers are marked with a red \u003cstrong\u003ex\u003c/strong\u003e.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://raw.githubusercontent.com/roberthryniewicz/images/master/lab201-plt-3d-scatter.png\" alt\u003d\"scatter-plot\" /\u003e\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Supervised Learning: Decision Trees and Random Forests",
+      "text": "%md\n\n### Supervised Learning\n\n\"Supervised learning is the machine learning task of inferring a function from labeled training data. The training data consist of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a \u0027reasonable\u0027 way.\" - [wikipedia](https://en.wikipedia.org/wiki/Supervised_learning)",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479648_465734281",
+      "id": "20160531-234527_450849720",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003eSupervised Learning\u003c/h3\u003e\n\u003cp\u003e\u0026ldquo;Supervised learning is the machine learning task of inferring a function from labeled training data. The training data consist of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a \u0027reasonable\u0027 way.\u0026rdquo; - \u003ca href\u003d\"https://en.wikipedia.org/wiki/Supervised_learning\"\u003ewikipedia\u003c/a\u003e\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Training Dataset",
+      "text": "%md\n\nFor Decision Tree and Random Forest examples we will use a diabetes dataset that has been cleansed, scaled, and sanitized to remove any personally identifying information. The diabetes dataset contains a distribution for 70 sets of data recorded on diabetes patients (several weeks\u0027 to months\u0027 worth of glucose, insulin, and lifestyle data per patient + a description of the problem domain).\n#\nKeep in mind that we are not particularly concerned what specific features represent, rather we will train our Decision Trees and Random Forest models to learn how the underlying features \"predict\" either negative or positive result based on the labeled training data set.\n#\n",
+      "dateUpdated": "Sep 16, 2016 8:03:54 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479648_465734281",
+      "id": "20160531-234527_1108937424",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eFor Decision Tree and Random Forest examples we will use a diabetes dataset that has been cleansed, scaled, and sanitized to remove any personally identifying information. The diabetes dataset contains a distribution for 70 sets of data recorded on diabetes patients (several weeks\u0027 to months\u0027 worth of glucose, insulin, and lifestyle data per patient + a description of the problem domain).\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eKeep in mind that we are not particularly concerned what specific features represent, rather we will train our Decision Trees and Random Forest models to learn how the underlying features \u0026ldquo;predict\u0026rdquo; either negative or positive result based on the labeled training data set.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "dateStarted": "Sep 16, 2016 8:03:56 AM",
+      "dateFinished": "Sep 16, 2016 8:03:57 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Download Dataset",
+      "text": "%sh\n\nwget --no-check-certificate http://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/diabetes_scale -O /usr/zeppelin/data/diabetes_scaled_data.txt",
+      "dateUpdated": "Sep 16, 2016 9:01:32 AM",
+      "config": {
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12.0,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        },
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479648_465734281",
+      "id": "20160531-234527_2048196502",
+      "result": "org.apache.zeppelin.interpreter.InterpreterException: org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused",
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "dateStarted": "Sep 16, 2016 9:01:33 AM",
+      "dateFinished": "Sep 16, 2016 9:02:03 AM",
+      "status": "ERROR",
+      "errorMessage": "java.net.ConnectException: Connection refused\n\tat java.net.PlainSocketImpl.socketConnect(Native Method)\n\tat java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)\n\tat java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)\n\tat java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)\n\tat java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n\tat java.net.Socket.connect(Socket.java:589)\n\tat org.apache.thrift.transport.TSocket.open(TSocket.java:182)\n\tat org.apache.zeppelin.interpreter.remote.ClientFactory.create(ClientFactory.java:51)\n\tat org.apache.zeppelin.interpreter.remote.ClientFactory.create(ClientFactory.java:37)\n\tat org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:60)\n\tat org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:861)\n\tat org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435)\n\tat org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.getClient(RemoteInterpreterProcess.java:96)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.init(RemoteInterpreter.java:216)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.getFormType(RemoteInterpreter.java:383)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.getFormType(LazyOpenInterpreter.java:105)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:314)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:176)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:329)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Preview Dataset",
+      "text": "%sh\n\nhead /tmp/diabetes_scaled_data.txt",
+      "dateUpdated": "Sep 16, 2016 8:04:16 AM",
+      "config": {
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12.0,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479649_465349532",
+      "id": "20160531-234527_2023231351",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "-1 1:-0.294118 2:0.487437 3:0.180328 4:-0.292929 5:-1 6:0.00149028 7:-0.53117 8:-0.0333333 \n+1 1:-0.882353 2:-0.145729 3:0.0819672 4:-0.414141 5:-1 6:-0.207153 7:-0.766866 8:-0.666667 \n-1 1:-0.0588235 2:0.839196 3:0.0491803 4:-1 5:-1 6:-0.305514 7:-0.492741 8:-0.633333 \n+1 1:-0.882353 2:-0.105528 3:0.0819672 4:-0.535354 5:-0.777778 6:-0.162444 7:-0.923997 8:-1 \n-1 1:-1 2:0.376884 3:-0.344262 4:-0.292929 5:-0.602837 6:0.28465 7:0.887276 8:-0.6 \n+1 1:-0.411765 2:0.165829 3:0.213115 4:-1 5:-1 6:-0.23696 7:-0.894962 8:-0.7 \n-1 1:-0.647059 2:-0.21608 3:-0.180328 4:-0.353535 5:-0.791962 6:-0.0760059 7:-0.854825 8:-0.833333 \n+1 1:0.176471 2:0.155779 3:-1 4:-1 5:-1 6:0.052161 7:-0.952178 8:-0.733333 \n-1 1:-0.764706 2:0.979899 3:0.147541 4:-0.0909091 5:0.283688 6:-0.0909091 7:-0.931682 8:0.0666667 \n-1 1:-0.0588235 2:0.256281 3:0.57377 4:-1 5:-1 6:-1 7:-0.868488 8:0.1 \n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "dateStarted": "Sep 16, 2016 8:04:16 AM",
+      "dateFinished": "Sep 16, 2016 8:04:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Count Number of Lines in the Dataset",
+      "text": "%sh\n\nwc -l \u003c /tmp/diabetes_scaled_data.txt",
+      "dateUpdated": "Sep 16, 2016 8:04:20 AM",
+      "config": {
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12.0,
+        "editorHide": false,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479649_465349532",
+      "id": "20160531-234527_1193249659",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "768\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "dateStarted": "Sep 16, 2016 8:04:20 AM",
+      "dateFinished": "Sep 16, 2016 8:04:20 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Decision Trees",
+      "text": "%md\n\nDecision trees and their ensembles are popular methods for the machine learning tasks of classification and regression. Decision trees are widely used since they are easy to interpret, handle categorical features, extend to the multiclass classification setting, do not require feature scaling, and are able to capture non-linearities and feature interactions. Tree ensemble algorithms such as random forests and boosting are among the top performers for classification and regression tasks.\n#\nThe spark.ml implementation supports decision trees for binary and multiclass classification and for regression, using both continuous and categorical features. The implementation partitions data by rows, allowing distributed training with millions or even billions of instances. ([See docs](http://spark.apache.org/docs/latest/ml-classification-regression.html#decision-trees) for more info.)\n#\nMake sure to checkout **[this](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)** great introduction to Visual Machine Learning to get an intuitive feel for the *ideas* behind Decision Tree classification.",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479650_466503779",
+      "id": "20160531-234527_1744723127",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eDecision trees and their ensembles are popular methods for the machine learning tasks of classification and regression. Decision trees are widely used since they are easy to interpret, handle categorical features, extend to the multiclass classification setting, do not require feature scaling, and are able to capture non-linearities and feature interactions. Tree ensemble algorithms such as random forests and boosting are among the top performers for classification and regression tasks.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eThe spark.ml implementation supports decision trees for binary and multiclass classification and for regression, using both continuous and categorical features. The implementation partitions data by rows, allowing distributed training with millions or even billions of instances. (\u003ca href\u003d\"http://spark.apache.org/docs/latest/ml-classification-regression.html#decision-trees\"\u003eSee docs\u003c/a\u003e for more info.)\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eMake sure to checkout \u003cstrong\u003e\u003ca href\u003d\"http://www.r2d3.us/visual-intro-to-machine-learning-part-1/\"\u003ethis\u003c/a\u003e\u003c/strong\u003e great introduction to Visual Machine Learning to get an intuitive feel for the \u003cem\u003eideas\u003c/em\u003e behind Decision Tree classification.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nFirst, let\u0027s train a Decision Tree model using the original MLlib Decision Tree API.\n#\nWe will hold 30% of the data as a test dataset and will set a maximum tree depth to 5.\n",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479656_462656290",
+      "id": "20160531-234527_1819879351",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eFirst, let\u0027s train a Decision Tree model using the original MLlib Decision Tree API.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eWe will hold 30% of the data as a test dataset and will set a maximum tree depth to 5.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Decision Trees with Spark MLlib",
+      "text": "import org.apache.spark.mllib.tree.DecisionTree\nimport org.apache.spark.mllib.tree.model.DecisionTreeModel\nimport org.apache.spark.mllib.regression.LabeledPoint\nimport org.apache.spark.mllib.util.MLUtils\n\n// Load and parse the data file.\nval data \u003d MLUtils.loadLibSVMFile(sc, \"file:///tmp/diabetes_scaled_data.txt\")\n\n// re-map labels from {-1, 1} to {0, 1} space. (Otherwise an error will occur.)\nval data_remapped \u003d data.map(d \u003d\u003e new LabeledPoint(if (d.label \u003d\u003d -1) 0 else 1, (d.features).toDense))\n\n// Split the data into training and test sets (30% held out for testing)\nval splits \u003d data_remapped.randomSplit(Array(0.7, 0.3))\nval (trainingData, testData) \u003d (splits(0), splits(1))\n\n// Train a DecisionTree model.\n//  Empty categoricalFeaturesInfo indicates all features are continuous.\nval numClasses \u003d 2\nval categoricalFeaturesInfo \u003d Map[Int, Int]()\nval impurity \u003d \"gini\"\nval maxDepth \u003d 5\nval maxBins \u003d 32\n\nval model \u003d DecisionTree.trainClassifier(trainingData, numClasses, categoricalFeaturesInfo,\n  impurity, maxDepth, maxBins)\n\n// Evaluate model on test instances and compute test error\nval labelAndPreds \u003d testData.map { point \u003d\u003e\n  val prediction \u003d model.predict(point.features)\n  (point.label, prediction)\n}\nval testErr \u003d labelAndPreds.filter(r \u003d\u003e r._1 !\u003d r._2).count().toDouble / testData.count()\nprintln(\"Test Error \u003d \" + testErr)\nprintln(\"Learned classification tree model:\\n\" + model.toDebugString)",
+      "dateUpdated": "Sep 16, 2016 8:32:37 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479656_462656290",
+      "id": "20160531-234527_102668036",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "\nimport org.apache.spark.mllib.tree.DecisionTree\n\nimport org.apache.spark.mllib.tree.model.DecisionTreeModel\n\nimport org.apache.spark.mllib.regression.LabeledPoint\n\nimport org.apache.spark.mllib.util.MLUtils\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\norg.apache.hadoop.mapred.InvalidInputException: Input path does not exist: file:/tmp/diabetes_scaled_data.txt\n  at org.apache.hadoop.mapred.FileInputFormat.singleThreadedListStatus(FileInputFormat.java:287)\n  at org.apache.hadoop.mapred.FileInputFormat.listStatus(FileInputFormat.java:229)\n  at org.apache.hadoop.mapred.FileInputFormat.getSplits(FileInputFormat.java:315)\n  at org.apache.spark.rdd.HadoopRDD.getPartitions(HadoopRDD.scala:200)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:248)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:246)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:248)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:246)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:248)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:246)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:248)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:246)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:248)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:246)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:248)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:246)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1934)\n  at org.apache.spark.rdd.RDD$$anonfun$reduce$1.apply(RDD.scala:983)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:358)\n  at org.apache.spark.rdd.RDD.reduce(RDD.scala:965)\n  at org.apache.spark.mllib.util.MLUtils$.computeNumFeatures(MLUtils.scala:92)\n  at org.apache.spark.mllib.util.MLUtils$.loadLibSVMFile(MLUtils.scala:81)\n  at org.apache.spark.mllib.util.MLUtils$.loadLibSVMFile(MLUtils.scala:138)\n  at org.apache.spark.mllib.util.MLUtils$.loadLibSVMFile(MLUtils.scala:146)\n  ... 47 elided\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "dateStarted": "Sep 16, 2016 8:32:38 AM",
+      "dateFinished": "Sep 16, 2016 8:32:45 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nMake sure to carefully evaluate the output. What is the accuracy after training this model?",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479657_462271541",
+      "id": "20160531-234527_1112312511",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eMake sure to carefully evaluate the output. What is the accuracy after training this model?\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nNow let\u0027s use the higher level Spark ML API for comparison.\n#\nThe main differences between this API and the original MLlib Decision Tree API are:\n\n- support for ML Pipelines\n- separation of Decision Trees for classification vs. regression\n- use of DataFrame metadata to distinguish continuous and categorical features\n\nThe Pipelines API for Decision Trees offers a bit more functionality than the original API. In particular, for classification, users can get the predicted probability of each class (a.k.a. class conditional probabilities).\n",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479658_463425788",
+      "id": "20160531-234527_791225242",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eNow let\u0027s use the higher level Spark ML API for comparison.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eThe main differences between this API and the original MLlib Decision Tree API are:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003esupport for ML Pipelines\u003c/li\u003e\n\u003cli\u003eseparation of Decision Trees for classification vs. regression\u003c/li\u003e\n\u003cli\u003euse of DataFrame metadata to distinguish continuous and categorical features\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe Pipelines API for Decision Trees offers a bit more functionality than the original API. In particular, for classification, users can get the predicted probability of each class (a.k.a. class conditional probabilities).\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Decision Trees with Spark ML",
+      "text": "import org.apache.spark.sql.SQLContext                                                                                       \n\nimport org.apache.spark.ml.Pipeline                                                                                          \nimport org.apache.spark.ml.classification.DecisionTreeClassifier                                                             \nimport org.apache.spark.ml.classification.DecisionTreeClassificationModel                                                    \nimport org.apache.spark.ml.feature.{StringIndexer, IndexToString, VectorIndexer}                                             \nimport org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator \nimport org.apache.spark.sql.Row\nimport org.apache.spark.mllib.linalg.{Vector, Vectors}\n\nval sqlContext \u003d new SQLContext(sc)                                                                                              \n    \n// Load the data stored in LIBSVM format as a DataFrame.                                                                 \nval data \u003d sqlContext.read.format(\"libsvm\").load(\"file:///tmp/diabetes_scaled_data.txt\")                                    \n                                                                                            \n// Index labels, adding metadata to the label column.                                                                    \n// Fit on whole dataset to include all labels in index.                                                                  \nval labelIndexer \u003d new StringIndexer()                                                                                   \n      .setInputCol(\"label\")                                                                                                  \n      .setOutputCol(\"indexedLabel\")                                                                                          \n      .fit(data)\n    \n// Automatically identify categorical features, and index them.                                                          \nval featureIndexer \u003d new VectorIndexer()                                                                                 \n      .setInputCol(\"features\")                                                                                               \n      .setOutputCol(\"indexedFeatures\")                                                                                       \n      .setMaxCategories(2) // features with \u003e 4 distinct values are treated as continuous                                    \n      .fit(data)                                                                                                             \n                                                                                                                             \n// Split the data into training and test sets (30% held out for testing)                                                 \nval Array(trainingData, testData) \u003d data.randomSplit(Array(0.7, 0.3))                                                    \n                                                                                                                             \n// Train a DecisionTree model.                                                                                           \nval dt \u003d new DecisionTreeClassifier()                                                                                    \n      .setLabelCol(\"indexedLabel\")                                                                                           \n      .setFeaturesCol(\"indexedFeatures\")\n      .setMaxDepth(5)\n                                                                                                                             \n// Convert indexed labels back to original labels.                                                                       \nval labelConverter \u003d new IndexToString()                                                                                 \n      .setInputCol(\"prediction\")                                                                                             \n      .setOutputCol(\"predictedLabel\")                                                                                        \n      .setLabels(labelIndexer.labels)                                                                                        \n                                                                                                                             \n// Chain indexers and tree in a Pipeline                                                                                 \nval pipeline \u003d new Pipeline()                                                                                            \n      .setStages(Array(labelIndexer, featureIndexer, dt, labelConverter))                                                    \n                                                                                                                             \n// Train model.  This also runs the indexers.                                                                            \nval model \u003d pipeline.fit(trainingData)                                                                                   \n                                                                                                                             \n// Make predictions.                                                                                                     \nval predictions \u003d model.transform(testData)                                                                              \n                                                                                                                             \n// Select example rows to display.                                                                                       \npredictions.select(\"predictedLabel\", \"label\", \"features\").show(5)                                                        \n                                                                                                                             \n// Select (prediction, true label) and compute test error                                                                \nval evaluator \u003d new MulticlassClassificationEvaluator()                                                                  \n      .setLabelCol(\"indexedLabel\")                                                                                           \n      .setPredictionCol(\"prediction\")                                                                                        \n      .setMetricName(\"precision\")                                                                                            \n    \nval accuracy \u003d evaluator.evaluate(predictions)                                                                           \nprintln(\"Test Error \u003d \" + (1.0 - accuracy))                                                                              \n                                                                                                                             \nval treeModel \u003d model.stages(2).asInstanceOf[DecisionTreeClassificationModel]                                            \nprintln(\"Learned classification tree model:\\n\" + treeModel.toDebugString)",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479658_463425788",
+      "id": "20160531-234527_903900070",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.sql.SQLContext\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.classification.DecisionTreeClassifier\nimport org.apache.spark.ml.classification.DecisionTreeClassificationModel\nimport org.apache.spark.ml.feature.{StringIndexer, IndexToString, VectorIndexer}\nimport org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator\nimport org.apache.spark.sql.Row\nimport org.apache.spark.mllib.linalg.{Vector, Vectors}\nsqlContext: org.apache.spark.sql.SQLContext \u003d org.apache.spark.sql.SQLContext@28b268de\ndata: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector]\nlabelIndexer: org.apache.spark.ml.feature.StringIndexerModel \u003d strIdx_a9ab27325edb\nfeatureIndexer: org.apache.spark.ml.feature.VectorIndexerModel \u003d vecIdx_4b8675eb8d58\ntrainingData: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector]\ntestData: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector]\ndt: org.apache.spark.ml.classification.DecisionTreeClassifier \u003d dtc_e8cee6f59001\nlabelConverter: org.apache.spark.ml.feature.IndexToString \u003d idxToStr_3c7ac29775d6\npipeline: org.apache.spark.ml.Pipeline \u003d pipeline_e8913d45c862\nmodel: org.apache.spark.ml.PipelineModel \u003d pipeline_e8913d45c862\npredictions: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector, indexedLabel: double, indexedFeatures: vector, rawPrediction: vector, probability: vector, prediction: double, predictedLabel: string]\n+--------------+-----+--------------------+\n|predictedLabel|label|            features|\n+--------------+-----+--------------------+\n|           1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|           1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|          -1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|          -1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|          -1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n+--------------+-----+--------------------+\nonly showing top 5 rows\n\nevaluator: org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator \u003d mcEval_9f0ce7afe2ba\naccuracy: Double \u003d 0.7106382978723405\nTest Error \u003d 0.28936170212765955\ntreeModel: org.apache.spark.ml.classification.DecisionTreeClassificationModel \u003d DecisionTreeClassificationModel (uid\u003ddtc_e8cee6f59001) of depth 5 with 47 nodes\nLearned classification tree model:\nDecisionTreeClassificationModel (uid\u003ddtc_e8cee6f59001) of depth 5 with 47 nodes\n  If (feature 1 \u003c\u003d 0.236181)\n   If (feature 7 \u003c\u003d -0.7)\n    If (feature 0 \u003c\u003d -0.294118)\n     If (feature 5 \u003c\u003d -0.0819672)\n      If (feature 6 \u003c\u003d -0.515798)\n       Predict: 0.0\n      Else (feature 6 \u003e -0.515798)\n       Predict: 0.0\n     Else (feature 5 \u003e -0.0819672)\n      If (feature 2 \u003c\u003d -0.147541)\n       Predict: 1.0\n      Else (feature 2 \u003e -0.147541)\n       Predict: 0.0\n    Else (feature 0 \u003e -0.294118)\n     If (feature 2 \u003c\u003d -1.0)\n      Predict: 0.0\n     Else (feature 2 \u003e -1.0)\n      Predict: 1.0\n   Else (feature 7 \u003e -0.7)\n    If (feature 5 \u003c\u003d -0.213115)\n     Predict: 0.0\n    Else (feature 5 \u003e -0.213115)\n     If (feature 6 \u003c\u003d -0.515798)\n      If (feature 1 \u003c\u003d 0.0653266)\n       Predict: 0.0\n      Else (feature 1 \u003e 0.0653266)\n       Predict: 1.0\n     Else (feature 6 \u003e -0.515798)\n      If (feature 2 \u003c\u003d 0.409836)\n       Predict: 1.0\n      Else (feature 2 \u003e 0.409836)\n       Predict: 0.0\n  Else (feature 1 \u003e 0.236181)\n   If (feature 7 \u003c\u003d -0.9)\n    If (feature 5 \u003c\u003d -0.0819672)\n     Predict: 0.0\n    Else (feature 5 \u003e -0.0819672)\n     If (feature 6 \u003c\u003d -0.687447)\n      If (feature 5 \u003c\u003d 0.0402385)\n       Predict: 0.0\n      Else (feature 5 \u003e 0.0402385)\n       Predict: 1.0\n     Else (feature 6 \u003e -0.687447)\n      If (feature 1 \u003c\u003d 0.256281)\n       Predict: 0.0\n      Else (feature 1 \u003e 0.256281)\n       Predict: 1.0\n   Else (feature 7 \u003e -0.9)\n    If (feature 6 \u003c\u003d -0.807003)\n     If (feature 1 \u003c\u003d 0.60804)\n      If (feature 7 \u003c\u003d -0.333333)\n       Predict: 0.0\n      Else (feature 7 \u003e -0.333333)\n       Predict: 1.0\n     Else (feature 1 \u003e 0.60804)\n      If (feature 0 \u003c\u003d -1.0)\n       Predict: 0.0\n      Else (feature 0 \u003e -1.0)\n       Predict: 1.0\n    Else (feature 6 \u003e -0.807003)\n     If (feature 5 \u003c\u003d -0.186289)\n      If (feature 7 \u003c\u003d -0.133333)\n       Predict: 1.0\n      Else (feature 7 \u003e -0.133333)\n       Predict: 0.0\n     Else (feature 5 \u003e -0.186289)\n      If (feature 0 \u003c\u003d -0.294118)\n       Predict: 1.0\n      Else (feature 0 \u003e -0.294118)\n       Predict: 1.0\n\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nWhat\u0027s the accuracy when using Spark ML API? What happens if you re-run the algo? Is the accuracy still the same? \n#\nCan you guess why you get different results?\n#",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": false,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479658_463425788",
+      "id": "20160531-234527_549157612",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eWhat\u0027s the accuracy when using Spark ML API? What happens if you re-run the algo? Is the accuracy still the same?\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eCan you guess why you get different results?\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Random Forests",
+      "text": "%md\n\nNow let\u0027s see if we can achieve a better performance with an ensemble of trees known as random forests. \n#\nRandom forests combine many decision trees in order to reduce the risk of overfitting. The spark.ml implementation supports random forests for binary and multiclass classification and for regression, using both continuous and categorical features. ([See docs](http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forests) for more info.)\n#\nIn the example below we will combine five (5) trees to create a forest of trees.\n#\n",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479658_463041039",
+      "id": "20160531-234527_1954753725",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eNow let\u0027s see if we can achieve a better performance with an ensemble of trees known as random forests.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eRandom forests combine many decision trees in order to reduce the risk of overfitting. The spark.ml implementation supports random forests for binary and multiclass classification and for regression, using both continuous and categorical features. (\u003ca href\u003d\"http://spark.apache.org/docs/latest/ml-classification-regression.html#random-forests\"\u003eSee docs\u003c/a\u003e for more info.)\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eIn the example below we will combine five (5) trees to create a forest of trees.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Random Forest with Spark ML",
+      "text": "import org.apache.spark.sql.SQLContext                                                                                                  \n\nimport org.apache.spark.ml.Pipeline                                                                                                     \nimport org.apache.spark.ml.classification.{RandomForestClassificationModel, RandomForestClassifier}                                     \nimport org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator                                                                 \nimport org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}                                                        \n\nval sqlContext \u003d new SQLContext(sc)                                                                                                 \n                                                                                                                                        \n// Load and parse the LIBSVM data file, converting it to a DataFrame.\nval data \u003d sqlContext.read.format(\"libsvm\").load(\"file:///tmp/diabetes_scaled_data.txt\") \n                                                                                                                                        \n// Index labels, adding metadata to the label column.                                                                               \n// Fit on whole dataset to include all labels in index.                                                                             \nval labelIndexer \u003d new StringIndexer()                                                                                              \n      .setInputCol(\"label\")                                                                                                             \n      .setOutputCol(\"indexedLabel\")                                                                                                     \n      .fit(data)                                                                                                                        \n\n// Automatically identify categorical features, and index them.                                                                     \nval featureIndexer \u003d new VectorIndexer()                                                                                            \n      .setInputCol(\"features\")                                                                                                          \n      .setOutputCol(\"indexedFeatures\")                                                                                                  \n      .setMaxCategories(2)                                                                                                              \n      .fit(data)                                                                                                                        \n                                                                                                                                        \n// Split the data into training and test sets (30% held out for testing)                                                            \nval Array(trainingData, testData) \u003d data.randomSplit(Array(0.7, 0.3))                                                               \n                                                                                                                                        \n// Train a RandomForest model.                                                                                                      \nval rf \u003d new RandomForestClassifier()                                                                                               \n      .setLabelCol(\"indexedLabel\")                                                                                                      \n      .setFeaturesCol(\"indexedFeatures\")                                                                                                \n      .setNumTrees(5)                                                                                                                  \n                                                                                                                                        \n// Convert indexed labels back to original labels.                                                                                  \nval labelConverter \u003d new IndexToString()                                                                                            \n      .setInputCol(\"prediction\")                                                                                                        \n      .setOutputCol(\"predictedLabel\")                                                                                                   \n      .setLabels(labelIndexer.labels)                                                                                                   \n                                                                                                                                        \n// Chain indexers and forest in a Pipeline                                                                                          \nval pipeline \u003d new Pipeline()                                                                                                       \n      .setStages(Array(labelIndexer, featureIndexer, rf, labelConverter))                                                               \n                                                                                                                                        \n// Train model.  This also runs the indexers.                                                                                       \nval model \u003d pipeline.fit(trainingData)                                                                                              \n                                                                                                                                        \n// Make predictions.                                                                                                                \nval predictions \u003d model.transform(testData)                                                                                         \n                                                                                                                                        \n// Select example rows to display.                                                                                                  \npredictions.select(\"predictedLabel\", \"label\", \"features\").show(5)                                                                   \n                                                                                                                                        \n// Select (prediction, true label) and compute test error                                                                           \nval evaluator \u003d new MulticlassClassificationEvaluator()                                                                             \n      .setLabelCol(\"indexedLabel\")                                                                                                      \n      .setPredictionCol(\"prediction\")                                                                                                   \n      .setMetricName(\"precision\")                                                                                                       \n    \nval accuracy \u003d evaluator.evaluate(predictions)                                                                                      \nprintln(\"Test Error \u003d \" + (1.0 - accuracy))                                                                                         \n                                                                                                                                        \nval rfModel \u003d model.stages(2).asInstanceOf[RandomForestClassificationModel]                                                         \nprintln(\"Learned classification forest model:\\n\" + rfModel.toDebugString)  ",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479659_463041039",
+      "id": "20160531-234527_1341024269",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.sql.SQLContext\nimport org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.classification.{RandomForestClassificationModel, RandomForestClassifier}\nimport org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator\nimport org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}\nsqlContext: org.apache.spark.sql.SQLContext \u003d org.apache.spark.sql.SQLContext@115fb587\ndata: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector]\nlabelIndexer: org.apache.spark.ml.feature.StringIndexerModel \u003d strIdx_4cf617819a81\nfeatureIndexer: org.apache.spark.ml.feature.VectorIndexerModel \u003d vecIdx_7d4c8b77cc8e\ntrainingData: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector]\ntestData: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector]\nrf: org.apache.spark.ml.classification.RandomForestClassifier \u003d rfc_179de118472f\nlabelConverter: org.apache.spark.ml.feature.IndexToString \u003d idxToStr_3eb3e734b5ba\npipeline: org.apache.spark.ml.Pipeline \u003d pipeline_7d5abae416fa\nmodel: org.apache.spark.ml.PipelineModel \u003d pipeline_7d5abae416fa\npredictions: org.apache.spark.sql.DataFrame \u003d [label: double, features: vector, indexedLabel: double, indexedFeatures: vector, rawPrediction: vector, probability: vector, prediction: double, predictedLabel: string]\n+--------------+-----+--------------------+\n|predictedLabel|label|            features|\n+--------------+-----+--------------------+\n|          -1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|           1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|           1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|           1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n|          -1.0| -1.0|(8,[0,1,2,3,4,5,6...|\n+--------------+-----+--------------------+\nonly showing top 5 rows\n\nevaluator: org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator \u003d mcEval_54bed819bfa4\naccuracy: Double \u003d 0.705607476635514\nTest Error \u003d 0.29439252336448596\nrfModel: org.apache.spark.ml.classification.RandomForestClassificationModel \u003d RandomForestClassificationModel (uid\u003drfc_808d63ffdb40) with 5 trees\nLearned classification forest model:\nRandomForestClassificationModel (uid\u003drfc_808d63ffdb40) with 5 trees\n  Tree 0 (weight 1.0):\n    If (feature 5 \u003c\u003d -0.19225)\n     If (feature 7 \u003c\u003d -0.666667)\n      If (feature 4 \u003c\u003d -0.879433)\n       If (feature 2 \u003c\u003d 0.0163934)\n        If (feature 4 \u003c\u003d -0.893617)\n         Predict: 0.0\n        Else (feature 4 \u003e -0.893617)\n         Predict: 1.0\n       Else (feature 2 \u003e 0.0163934)\n        Predict: 0.0\n      Else (feature 4 \u003e -0.879433)\n       Predict: 0.0\n     Else (feature 7 \u003e -0.666667)\n      If (feature 1 \u003c\u003d 0.517588)\n       If (feature 6 \u003c\u003d -0.131512)\n        If (feature 1 \u003c\u003d 0.326633)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.326633)\n         Predict: 0.0\n       Else (feature 6 \u003e -0.131512)\n        If (feature 2 \u003c\u003d -0.180328)\n         Predict: 1.0\n        Else (feature 2 \u003e -0.180328)\n         Predict: 0.0\n      Else (feature 1 \u003e 0.517588)\n       If (feature 2 \u003c\u003d 0.278689)\n        Predict: 1.0\n       Else (feature 2 \u003e 0.278689)\n        Predict: 0.0\n    Else (feature 5 \u003e -0.19225)\n     If (feature 6 \u003c\u003d -0.442357)\n      If (feature 2 \u003c\u003d -1.0)\n       Predict: 1.0\n      Else (feature 2 \u003e -1.0)\n       If (feature 1 \u003c\u003d 0.296482)\n        If (feature 6 \u003c\u003d -0.615713)\n         Predict: 0.0\n        Else (feature 6 \u003e -0.615713)\n         Predict: 0.0\n       Else (feature 1 \u003e 0.296482)\n        If (feature 3 \u003c\u003d -0.373737)\n         Predict: 1.0\n        Else (feature 3 \u003e -0.373737)\n         Predict: 1.0\n     Else (feature 6 \u003e -0.442357)\n      If (feature 5 \u003c\u003d 0.0730254)\n       If (feature 5 \u003c\u003d 0.004471)\n        If (feature 1 \u003c\u003d -0.00502513)\n         Predict: 0.0\n        Else (feature 1 \u003e -0.00502513)\n         Predict: 1.0\n       Else (feature 5 \u003e 0.004471)\n        Predict: 1.0\n      Else (feature 5 \u003e 0.0730254)\n       If (feature 6 \u003c\u003d -0.349274)\n        If (feature 5 \u003c\u003d 0.102832)\n         Predict: 0.0\n        Else (feature 5 \u003e 0.102832)\n         Predict: 1.0\n       Else (feature 6 \u003e -0.349274)\n        If (feature 7 \u003c\u003d -0.866667)\n         Predict: 1.0\n        Else (feature 7 \u003e -0.866667)\n         Predict: 0.0\n  Tree 1 (weight 1.0):\n    If (feature 1 \u003c\u003d 0.266332)\n     If (feature 7 \u003c\u003d -0.4)\n      If (feature 1 \u003c\u003d 0.0854271)\n       If (feature 5 \u003c\u003d 0.0730254)\n        If (feature 3 \u003c\u003d -0.292929)\n         Predict: 0.0\n        Else (feature 3 \u003e -0.292929)\n         Predict: 0.0\n       Else (feature 5 \u003e 0.0730254)\n        If (feature 0 \u003c\u003d -0.882353)\n         Predict: 0.0\n        Else (feature 0 \u003e -0.882353)\n         Predict: 0.0\n      Else (feature 1 \u003e 0.0854271)\n       If (feature 3 \u003c\u003d -0.414141)\n        If (feature 5 \u003c\u003d -0.403875)\n         Predict: 1.0\n        Else (feature 5 \u003e -0.403875)\n         Predict: 0.0\n       Else (feature 3 \u003e -0.414141)\n        If (feature 6 \u003c\u003d -0.615713)\n         Predict: 0.0\n        Else (feature 6 \u003e -0.615713)\n         Predict: 1.0\n     Else (feature 7 \u003e -0.4)\n      If (feature 2 \u003c\u003d 0.393443)\n       If (feature 5 \u003c\u003d -0.260805)\n        Predict: 0.0\n       Else (feature 5 \u003e -0.260805)\n        If (feature 5 \u003c\u003d 0.102832)\n         Predict: 1.0\n        Else (feature 5 \u003e 0.102832)\n         Predict: 0.0\n      Else (feature 2 \u003e 0.393443)\n       If (feature 6 \u003c\u003d -0.865927)\n        If (feature 2 \u003c\u003d 0.508197)\n         Predict: 0.0\n        Else (feature 2 \u003e 0.508197)\n         Predict: 1.0\n       Else (feature 6 \u003e -0.865927)\n        If (feature 1 \u003c\u003d 0.175879)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.175879)\n         Predict: 1.0\n    Else (feature 1 \u003e 0.266332)\n     If (feature 5 \u003c\u003d -0.14456)\n      If (feature 7 \u003c\u003d -0.866667)\n       If (feature 3 \u003c\u003d -1.0)\n        If (feature 2 \u003c\u003d -0.0983607)\n         Predict: 1.0\n        Else (feature 2 \u003e -0.0983607)\n         Predict: 0.0\n       Else (feature 3 \u003e -1.0)\n        Predict: 0.0\n      Else (feature 7 \u003e -0.866667)\n       If (feature 3 \u003c\u003d -0.757576)\n        If (feature 1 \u003c\u003d 0.447236)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.447236)\n         Predict: 1.0\n       Else (feature 3 \u003e -0.757576)\n        If (feature 4 \u003c\u003d -1.0)\n         Predict: 0.0\n        Else (feature 4 \u003e -1.0)\n         Predict: 1.0\n     Else (feature 5 \u003e -0.14456)\n      If (feature 6 \u003c\u003d -0.799317)\n       If (feature 6 \u003c\u003d -0.940222)\n        Predict: 1.0\n       Else (feature 6 \u003e -0.940222)\n        If (feature 6 \u003c\u003d -0.847139)\n         Predict: 0.0\n        Else (feature 6 \u003e -0.847139)\n         Predict: 1.0\n      Else (feature 6 \u003e -0.799317)\n       If (feature 4 \u003c\u003d -0.541371)\n        If (feature 7 \u003c\u003d -0.6)\n         Predict: 1.0\n        Else (feature 7 \u003e -0.6)\n         Predict: 1.0\n       Else (feature 4 \u003e -0.541371)\n        If (feature 0 \u003c\u003d -0.882353)\n         Predict: 0.0\n        Else (feature 0 \u003e -0.882353)\n         Predict: 1.0\n  Tree 2 (weight 1.0):\n    If (feature 7 \u003c\u003d -0.766667)\n     If (feature 5 \u003c\u003d 0.195231)\n      If (feature 3 \u003c\u003d -0.434343)\n       If (feature 0 \u003c\u003d -0.764706)\n        If (feature 5 \u003c\u003d -0.14456)\n         Predict: 0.0\n        Else (feature 5 \u003e -0.14456)\n         Predict: 0.0\n       Else (feature 0 \u003e -0.764706)\n        If (feature 1 \u003c\u003d 0.326633)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.326633)\n         Predict: 1.0\n      Else (feature 3 \u003e -0.434343)\n       If (feature 4 \u003c\u003d -1.0)\n        If (feature 1 \u003c\u003d 0.125628)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.125628)\n         Predict: 1.0\n       Else (feature 4 \u003e -1.0)\n        If (feature 5 \u003c\u003d 0.0312965)\n         Predict: 0.0\n        Else (feature 5 \u003e 0.0312965)\n         Predict: 0.0\n     Else (feature 5 \u003e 0.195231)\n      If (feature 6 \u003c\u003d -0.565329)\n       If (feature 2 \u003c\u003d -1.0)\n        Predict: 1.0\n       Else (feature 2 \u003e -1.0)\n        If (feature 1 \u003c\u003d 0.407035)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.407035)\n         Predict: 1.0\n      Else (feature 6 \u003e -0.565329)\n       If (feature 6 \u003c\u003d -0.442357)\n        If (feature 1 \u003c\u003d 0.296482)\n         Predict: 1.0\n        Else (feature 1 \u003e 0.296482)\n         Predict: 1.0\n       Else (feature 6 \u003e -0.442357)\n        Predict: 0.0\n    Else (feature 7 \u003e -0.766667)\n     If (feature 5 \u003c\u003d -0.23696)\n      If (feature 6 \u003c\u003d -0.779675)\n       If (feature 0 \u003c\u003d 0.0588235)\n        If (feature 5 \u003c\u003d -0.403875)\n         Predict: 1.0\n        Else (feature 5 \u003e -0.403875)\n         Predict: 0.0\n       Else (feature 0 \u003e 0.0588235)\n        Predict: 1.0\n      Else (feature 6 \u003e -0.779675)\n       Predict: 0.0\n     Else (feature 5 \u003e -0.23696)\n      If (feature 6 \u003c\u003d -0.847139)\n       If (feature 4 \u003c\u003d -0.460993)\n        If (feature 5 \u003c\u003d 0.365127)\n         Predict: 0.0\n        Else (feature 5 \u003e 0.365127)\n         Predict: 1.0\n       Else (feature 4 \u003e -0.460993)\n        Predict: 1.0\n      Else (feature 6 \u003e -0.847139)\n       If (feature 6 \u003c\u003d 0.0367208)\n        If (feature 4 \u003c\u003d -0.541371)\n         Predict: 1.0\n        Else (feature 4 \u003e -0.541371)\n         Predict: 1.0\n       Else (feature 6 \u003e 0.0367208)\n        If (feature 7 \u003c\u003d -0.2)\n         Predict: 0.0\n        Else (feature 7 \u003e -0.2)\n         Predict: 1.0\n  Tree 3 (weight 1.0):\n    If (feature 5 \u003c\u003d -0.105812)\n     If (feature 1 \u003c\u003d 0.0552764)\n      If (feature 0 \u003c\u003d 0.176471)\n       If (feature 2 \u003c\u003d 0.344262)\n        Predict: 0.0\n       Else (feature 2 \u003e 0.344262)\n        If (feature 5 \u003c\u003d -0.165425)\n         Predict: 1.0\n        Else (feature 5 \u003e -0.165425)\n         Predict: 0.0\n      Else (feature 0 \u003e 0.176471)\n       If (feature 4 \u003c\u003d -1.0)\n        Predict: 1.0\n       Else (feature 4 \u003e -1.0)\n        Predict: 0.0\n     Else (feature 1 \u003e 0.0552764)\n      If (feature 0 \u003c\u003d -0.647059)\n       If (feature 7 \u003c\u003d -0.7)\n        If (feature 1 \u003c\u003d 0.366834)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.366834)\n         Predict: 0.0\n       Else (feature 7 \u003e -0.7)\n        If (feature 5 \u003c\u003d -0.305514)\n         Predict: 0.0\n        Else (feature 5 \u003e -0.305514)\n         Predict: 1.0\n      Else (feature 0 \u003e -0.647059)\n       If (feature 4 \u003c\u003d -0.692671)\n        If (feature 6 \u003c\u003d -0.855679)\n         Predict: 0.0\n        Else (feature 6 \u003e -0.855679)\n         Predict: 1.0\n       Else (feature 4 \u003e -0.692671)\n        Predict: 1.0\n    Else (feature 5 \u003e -0.105812)\n     If (feature 1 \u003c\u003d 0.246231)\n      If (feature 6 \u003c\u003d -0.645602)\n       If (feature 7 \u003c\u003d -0.4)\n        If (feature 5 \u003c\u003d 0.0193741)\n         Predict: 0.0\n        Else (feature 5 \u003e 0.0193741)\n         Predict: 0.0\n       Else (feature 7 \u003e -0.4)\n        If (feature 3 \u003c\u003d -0.494949)\n         Predict: 1.0\n        Else (feature 3 \u003e -0.494949)\n         Predict: 0.0\n      Else (feature 6 \u003e -0.645602)\n       If (feature 1 \u003c\u003d 0.0854271)\n        If (feature 6 \u003c\u003d -0.131512)\n         Predict: 0.0\n        Else (feature 6 \u003e -0.131512)\n         Predict: 1.0\n       Else (feature 1 \u003e 0.0854271)\n        If (feature 7 \u003c\u003d -0.766667)\n         Predict: 0.0\n        Else (feature 7 \u003e -0.766667)\n         Predict: 1.0\n     Else (feature 1 \u003e 0.246231)\n      If (feature 6 \u003c\u003d -0.815542)\n       If (feature 0 \u003c\u003d 0.0588235)\n        If (feature 1 \u003c\u003d 0.567839)\n         Predict: 0.0\n        Else (feature 1 \u003e 0.567839)\n         Predict: 1.0\n       Else (feature 0 \u003e 0.0588235)\n        Predict: 0.0\n      Else (feature 6 \u003e -0.815542)\n       If (feature 2 \u003c\u003d 0.0163934)\n        If (feature 3 \u003c\u003d -1.0)\n         Predict: 1.0\n        Else (feature 3 \u003e -1.0)\n         Predict: 1.0\n       Else (feature 2 \u003e 0.0163934)\n        If (feature 2 \u003c\u003d 0.0491803)\n         Predict: 0.0\n        Else (feature 2 \u003e 0.0491803)\n         Predict: 1.0\n  Tree 4 (weight 1.0):\n    If (feature 7 \u003c\u003d -0.9)\n     If (feature 0 \u003c\u003d -1.0)\n      If (feature 4 \u003c\u003d -1.0)\n       If (feature 5 \u003c\u003d -0.0700447)\n        Predict: 0.0\n       Else (feature 5 \u003e -0.0700447)\n        If (feature 3 \u003c\u003d -1.0)\n         Predict: 1.0\n        Else (feature 3 \u003e -1.0)\n         Predict: 1.0\n      Else (feature 4 \u003e -1.0)\n       If (feature 1 \u003c\u003d 0.266332)\n        Predict: 0.0\n       Else (feature 1 \u003e 0.266332)\n        If (feature 4 \u003c\u003d -0.34279)\n         Predict: 1.0\n        Else (feature 4 \u003e -0.34279)\n         Predict: 0.0\n     Else (feature 0 \u003e -1.0)\n      If (feature 1 \u003c\u003d 0.266332)\n       Predict: 0.0\n      Else (feature 1 \u003e 0.266332)\n       If (feature 5 \u003c\u003d 0.052161)\n        Predict: 0.0\n       Else (feature 5 \u003e 0.052161)\n        If (feature 6 \u003c\u003d -0.590948)\n         Predict: 0.0\n        Else (feature 6 \u003e -0.590948)\n         Predict: 1.0\n    Else (feature 7 \u003e -0.9)\n     If (feature 3 \u003c\u003d -0.494949)\n      If (feature 4 \u003c\u003d -0.621749)\n       If (feature 1 \u003c\u003d 0.226131)\n        If (feature 2 \u003c\u003d -0.0491803)\n         Predict: 0.0\n        Else (feature 2 \u003e -0.0491803)\n         Predict: 0.0\n       Else (feature 1 \u003e 0.226131)\n        If (feature 4 \u003c\u003d -0.692671)\n         Predict: 1.0\n        Else (feature 4 \u003e -0.692671)\n         Predict: 0.0\n      Else (feature 4 \u003e -0.621749)\n       If (feature 0 \u003c\u003d -0.529412)\n        If (feature 5 \u003c\u003d -0.165425)\n         Predict: 0.0\n        Else (feature 5 \u003e -0.165425)\n         Predict: 1.0\n       Else (feature 0 \u003e -0.529412)\n        Predict: 1.0\n     Else (feature 3 \u003e -0.494949)\n      If (feature 6 \u003c\u003d -0.799317)\n       If (feature 1 \u003c\u003d 0.246231)\n        If (feature 5 \u003c\u003d 0.0193741)\n         Predict: 0.0\n        Else (feature 5 \u003e 0.0193741)\n         Predict: 0.0\n       Else (feature 1 \u003e 0.246231)\n        If (feature 0 \u003c\u003d -0.411765)\n         Predict: 1.0\n        Else (feature 0 \u003e -0.411765)\n         Predict: 0.0\n      Else (feature 6 \u003e -0.799317)\n       If (feature 1 \u003c\u003d 0.266332)\n        If (feature 5 \u003c\u003d -0.0909091)\n         Predict: 0.0\n        Else (feature 5 \u003e -0.0909091)\n         Predict: 0.0\n       Else (feature 1 \u003e 0.266332)\n        If (feature 2 \u003c\u003d 0.508197)\n         Predict: 1.0\n        Else (feature 2 \u003e 0.508197)\n         Predict: 0.0\n\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#\nHas the accuracy improved after training the dataset using the Random Forest model? Does the accuracy improve if you increase the number of trees?\n#\nWhat did you find interesting in the output of a Random Forest classifier?\n#",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479660_461117294",
+      "id": "20160531-234527_754013818",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eHas the accuracy improved after training the dataset using the Random Forest model? Does the accuracy improve if you increase the number of trees?\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eWhat did you find interesting in the output of a Random Forest classifier?\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "The End",
+      "text": "%md\n\nThis concludes our lab. Hopefully you\u0027ve got a taste of how easy it is to run clustering and classification models with Apache Spark!",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479661_460732545",
+      "id": "20160531-234527_409238179",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eThis concludes our lab. Hopefully you\u0027ve got a taste of how easy it is to run clustering and classification models with Apache Spark!\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Resources: Hortonworks Community Connection",
+      "text": "%md\n\nMake sure to checkout [Hortonworks Community Connection (HCC)](https://community.hortonworks.com/answers/index.html) if you have Apache Spark and/or Data Science / Analytics related questions or you would like to contribute back to the community with your own answers/examples/articles/repos.\n#\nAll best,\nThe HCC Team!\n#\n[![HCC](http://hortonworks.com/wp-content/uploads/2016/03/logo-hcc.png)](https://community.hortonworks.com/answers/index.html)",
+      "dateUpdated": "Sep 16, 2016 5:57:59 AM",
+      "config": {
+        "editorMode": "ace/mode/markdown",
+        "colWidth": 12.0,
+        "editorHide": true,
+        "title": true,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479661_460732545",
+      "id": "20160531-234527_1823436759",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eMake sure to checkout \u003ca href\u003d\"https://community.hortonworks.com/answers/index.html\"\u003eHortonworks Community Connection (HCC)\u003c/a\u003e if you have Apache Spark and/or Data Science / Analytics related questions or you would like to contribute back to the community with your own answers/examples/articles/repos.\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003eAll best,\n\u003cbr  /\u003eThe HCC Team!\u003c/p\u003e\n\u003ch1\u003e\u003c/h1\u003e\n\u003cp\u003e\u003ca href\u003d\"https://community.hortonworks.com/answers/index.html\"\u003e\u003cimg src\u003d\"http://hortonworks.com/wp-content/uploads/2016/03/logo-hcc.png\" alt\u003d\"HCC\" /\u003e\u003c/a\u003e\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "dateUpdated": "Sep 16, 2016 5:58:16 AM",
+      "config": {
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12.0,
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {},
+          "map": {
+            "baseMapType": "Streets",
+            "isOnline": true,
+            "pinCols": []
+          }
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1474005479661_460732545",
+      "id": "20160531-234527_1909965823",
+      "dateCreated": "Sep 16, 2016 5:57:59 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ML_Spark",
+  "id": "2BVG37R1F",
+  "lastReplName": {
+    "value": "spark"
+  },
+  "angularObjects": {
+    "2BW9T7TDN:shared_process": [],
+    "2BXP357BU:shared_process": [],
+    "2BWQ1TEC4:shared_process": [],
+    "2BX7E7941:shared_process": [],
+    "2BWE45C8S:shared_process": [],
+    "2BX4KRB1S:shared_process": [],
+    "2BXURDM4U:shared_process": [],
+    "2BUZUB676:shared_process": [],
+    "2BV26NSHR:shared_process": []
+  },
+  "config": {
+    "looknfeel": "simple"
+  },
+  "info": {}
+}
